@@ -3,7 +3,6 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 import BlogContext  from '../context/BlogContext'
-// import { FlatList } from 'react-native-gesture-handler';
 
 const IndexScreen = () => {
     const { data, addBlogPost } = useContext(BlogContext);
