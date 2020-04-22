@@ -5,9 +5,9 @@ import { StyleSheet, Text, TextInput, View, Button, FlatList, TouchableOpacity }
 import {Context}  from '../context/BlogContext'
 import { Feather } from '@expo/vector-icons'
 
-const BlogPostForm = ({ navigation }) => {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+const BlogPostForm = ({ onSubmit, initialValues }) => {
+    const [title, setTitle] = useState(initialValues.title);
+    const [content, setContent] = useState(initialValues.content);
 
     return (
         <View>
@@ -25,11 +25,18 @@ const BlogPostForm = ({ navigation }) => {
             />
             <Button 
                 title="Save Blog Post" 
-                
+                onPress={() => onSubmit(title, content)}
             />
         </View>
     );
-}
+};
+
+BlogPostForm.defaultProps = {
+    initialValues: {
+        title: '',
+        content: ''
+    }
+};
 
 const styles = StyleSheet.create({
     input: {
