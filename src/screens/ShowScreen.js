@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { StyleSheet, Text, View, Button, FlatList, TouchableOpacity } from 'react-native'
-import {Context}  from '../context/BlogContext'
-import { Feather } from '@expo/vector-icons'
+import { Context }  from '../context/BlogContext'
+import { EvilIcons } from '@expo/vector-icons'
 
 const ShowScreen = ({ navigation }) => {
     const { state } = useContext(Context);
@@ -12,11 +12,23 @@ const ShowScreen = ({ navigation }) => {
 
     return (
         <View>
-            <Text>Show Screen</Text>
-            <Button title="Add Post" onPress={deleteBlogPost} />
+            <Text>{blogPost.title}</Text>
+            <Text>{blogPost.content}</Text>
+            {/* <Button title="Add Post" onPress={deleteBlogPost} /> */}
         </View>
     );
 }
+
+ShowScreen.navigationOptions = ({ navigation }) => {
+    return {
+        headerRight: <TouchableOpacity onPress={() => 
+            navigation.navigate('Edit', { id: navigation.getParam('id')})
+            }
+        >
+            <EvilIcons name="pencil" size={35} />
+        </TouchableOpacity>
+    };
+}; 
 
 const styles = StyleSheet.create({
     
